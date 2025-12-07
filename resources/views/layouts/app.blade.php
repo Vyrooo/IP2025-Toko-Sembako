@@ -57,16 +57,6 @@
             border-color: var(--main-green-dark);
         }
 
-        @media (min-width: 992px) {
-            .navbar-collapse.collapse,
-            .navbar-collapse.collapse.show,
-            #mainNavbar.navbar-collapse,
-            #mainNavbar.navbar-collapse.collapse {
-                display: flex !important;
-                visibility: visible !important;
-            }
-        }
-
         .navbar-main .nav-link {
             color: rgba(255, 255, 255, 0.9) !important;
         }
@@ -76,21 +66,47 @@
             color: #fff !important;
         }
 
+        /* Mobile navbar styling */
         @media (max-width: 991.98px) {
             .navbar-collapse {
-                background-color: rgba(0, 0, 0, 0.1);
+                background-color: rgba(0, 0, 0, 0.2);
                 border-radius: 0.5rem;
-                margin-top: 0.5rem;
+                margin-top: 0.75rem;
                 padding: 1rem;
             }
 
-            .navbar-collapse .navbar-nav {
-                margin-bottom: 1rem;
+            .navbar-nav {
+                margin-bottom: 1rem !important;
             }
 
-            .navbar-collapse .dropdown-menu {
-                background-color: rgba(0, 0, 0, 0.15);
-                border: none;
+            .navbar-nav .nav-link {
+                padding: 0.5rem 0 !important;
+                font-size: 0.95rem;
+            }
+
+            .dropdown-menu {
+                background-color: rgba(0, 0, 0, 0.3) !important;
+                border: none !important;
+            }
+
+            .dropdown-menu .dropdown-item {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            .dropdown-menu .dropdown-item:hover {
+                background-color: rgba(0, 0, 0, 0.2) !important;
+                color: #fff !important;
+            }
+
+            .navbar-user-info {
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                padding-top: 1rem;
+                margin-top: 1rem;
+            }
+
+            .logout-btn {
+                width: 100%;
+                text-align: left;
             }
         }
     </style>
@@ -149,14 +165,19 @@
                     @endif
                 </ul>
                 @if($user)
-                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-3 mt-lg-0">
-                    <div class="text-white text-start text-lg-end d-block">
+                <div class="navbar-user-info">
+                    <div class="text-white mb-3 d-none d-lg-block">
                         <div class="small text-uppercase">{{ $user->role ?? '' }}</div>
                         <div class="fw-semibold">{{ $user->name ?? '' }}</div>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    <div class="text-white d-lg-none mb-2">
+                        <strong>{{ $user->name ?? '' }}</strong> ({{ $user->role ?? '' }})
+                    </div>
+                    <form method="POST" action="{{ route('logout') }}" class="m-0">
                         @csrf
-                        <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                        <button type="submit" class="btn btn-outline-light btn-sm logout-btn">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </button>
                     </form>
                 </div>
                 @endif
