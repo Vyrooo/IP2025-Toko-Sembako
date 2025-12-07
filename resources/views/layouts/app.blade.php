@@ -75,6 +75,24 @@
         .navbar-main .nav-link:focus {
             color: #fff !important;
         }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+                padding: 1rem;
+            }
+
+            .navbar-collapse .navbar-nav {
+                margin-bottom: 1rem;
+            }
+
+            .navbar-collapse .dropdown-menu {
+                background-color: rgba(0, 0, 0, 0.15);
+                border: none;
+            }
+        }
     </style>
 
     @stack('styles')
@@ -131,8 +149,8 @@
                     @endif
                 </ul>
                 @if($user)
-                <div class="d-flex align-items-center gap-3 ms-lg-auto">
-                    <div class="text-white text-end d-none d-md-block">
+                <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 ms-lg-auto mt-3 mt-lg-0">
+                    <div class="text-white text-start text-lg-end d-block">
                         <div class="small text-uppercase">{{ $user->role ?? '' }}</div>
                         <div class="fw-semibold">{{ $user->name ?? '' }}</div>
                     </div>
