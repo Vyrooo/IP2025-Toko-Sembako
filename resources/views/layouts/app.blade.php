@@ -66,12 +66,25 @@
             color: #fff !important;
         }
 
-        @media (min-width: 992px) {
-            #mainNavbar {
-                display: flex !important;
+        @media (max-width: 991.98px) {
+            #mainNavbar.navbar-collapse {
+                display: block !important;
+                visibility: visible !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            #mainNavbar.navbar-collapse.collapse:not(.show) {
+                display: none !important;
             }
         }
 
+        @media (min-width: 992px) {
+            #mainNavbar.navbar-collapse {
+                display: flex !important;
+                visibility: visible !important;
+            }
+        }
     </style>
 
     @stack('styles')
@@ -81,15 +94,12 @@
     @php
         $user = auth()->user();
     @endphp
-
     <nav class="navbar navbar-expand-lg navbar-dark navbar-main shadow-sm">
         <div class="container-fluid">
             <span class="navbar-brand fw-semibold mb-0">Toko Sembako 350</span>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if($user && $user->hasRole('kasir'))
@@ -130,7 +140,6 @@
                         </li>
                     @endif
                 </ul>
-
                 @if($user)
                 <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1rem; margin-top: 1rem;">
                     <div style="color: white; margin-bottom: 1rem;">
@@ -145,30 +154,29 @@
                     </form>
                 </div>
                 @endif
-
             </div>
         </div>
     </nav>
 
-    <main class="container py-4">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ session('success') }}
-                <button class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @elseif (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show">
-                {{ session('error') }}
-                <button class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
+<main class="container py-4">
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            {{ session('error') }}
+            <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
 
-        {{ $slot }}
-    </main>
+    {{ $slot }}
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    @stack('scripts')
+@stack('scripts')
 
 </body>
 </html>
