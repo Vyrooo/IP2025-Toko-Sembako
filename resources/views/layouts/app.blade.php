@@ -96,7 +96,7 @@
     @endphp
     <nav class="navbar navbar-expand-lg navbar-dark navbar-main shadow-sm">
         <div class="container-fluid">
-            <a class="navbar-brand fw-semibold mb-0" href="#">Toko Sembako 350</a>
+            <span class="navbar-brand fw-semibold mb-0">Toko Sembako 350</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
