@@ -65,6 +65,26 @@
         .navbar-main .nav-link:focus {
             color: #fff !important;
         }
+
+        @media (max-width: 991.98px) {
+            #mainNavbar.navbar-collapse {
+                display: block !important;
+                visibility: visible !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            #mainNavbar.navbar-collapse.collapse:not(.show) {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 992px) {
+            #mainNavbar.navbar-collapse {
+                display: flex !important;
+                visibility: visible !important;
+            }
+        }
     </style>
 
     @stack('styles')
@@ -122,16 +142,13 @@
                 </ul>
                 @if($user)
                 <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1rem; margin-top: 1rem;">
-                    <div style="color: white; margin-bottom: 1rem; display: none;" class="d-none d-lg-block">
-                        <div style="font-size: 0.75rem; text-transform: uppercase;">{{ $user->role ?? '' }}</div>
-                        <div style="font-weight: 600;">{{ $user->name ?? '' }}</div>
-                    </div>
-                    <div style="color: white; margin-bottom: 1rem;" class="d-lg-none">
-                        <strong>{{ $user->name ?? '' }}</strong> ({{ $user->role ?? '' }})
+                    <div style="color: white; margin-bottom: 1rem;">
+                        <strong>{{ $user->name ?? '' }}</strong> <br>
+                        <small style="font-size: 0.75rem; opacity: 0.9;">{{ $user->role ?? '' }}</small>
                     </div>
                     <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                         @csrf
-                        <button type="submit" style="width: 100%; text-align: left;" class="btn btn-outline-light btn-sm">
+                        <button type="submit" style="width: 100%; text-align: left; background-color: transparent; border: 1px solid white; color: white; padding: 0.5rem 0.75rem; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'" onmouseout="this.style.backgroundColor='transparent'">
                             Logout
                         </button>
                     </form>
