@@ -65,50 +65,6 @@
         .navbar-main .nav-link:focus {
             color: #fff !important;
         }
-
-        /* Mobile navbar styling */
-        @media (max-width: 991.98px) {
-            .navbar-collapse {
-                background-color: rgba(0, 0, 0, 0.2);
-                border-radius: 0.5rem;
-                margin-top: 0.75rem;
-                padding: 1rem;
-            }
-
-            .navbar-nav {
-                margin-bottom: 1rem !important;
-            }
-
-            .navbar-nav .nav-link {
-                padding: 0.5rem 0 !important;
-                font-size: 0.95rem;
-            }
-
-            .dropdown-menu {
-                background-color: rgba(0, 0, 0, 0.3) !important;
-                border: none !important;
-            }
-
-            .dropdown-menu .dropdown-item {
-                color: rgba(255, 255, 255, 0.9) !important;
-            }
-
-            .dropdown-menu .dropdown-item:hover {
-                background-color: rgba(0, 0, 0, 0.2) !important;
-                color: #fff !important;
-            }
-
-            .navbar-user-info {
-                border-top: 1px solid rgba(255, 255, 255, 0.2);
-                padding-top: 1rem;
-                margin-top: 1rem;
-            }
-
-            .logout-btn {
-                width: 100%;
-                text-align: left;
-            }
-        }
     </style>
 
     @stack('styles')
@@ -165,18 +121,18 @@
                     @endif
                 </ul>
                 @if($user)
-                <div class="navbar-user-info">
-                    <div class="text-white mb-3 d-none d-lg-block">
-                        <div class="small text-uppercase">{{ $user->role ?? '' }}</div>
-                        <div class="fw-semibold">{{ $user->name ?? '' }}</div>
+                <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1rem; margin-top: 1rem;">
+                    <div style="color: white; margin-bottom: 1rem; display: none;" class="d-none d-lg-block">
+                        <div style="font-size: 0.75rem; text-transform: uppercase;">{{ $user->role ?? '' }}</div>
+                        <div style="font-weight: 600;">{{ $user->name ?? '' }}</div>
                     </div>
-                    <div class="text-white d-lg-none mb-2">
+                    <div style="color: white; margin-bottom: 1rem;" class="d-lg-none">
                         <strong>{{ $user->name ?? '' }}</strong> ({{ $user->role ?? '' }})
                     </div>
-                    <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                         @csrf
-                        <button type="submit" class="btn btn-outline-light btn-sm logout-btn">
-                            <i class="bi bi-box-arrow-right"></i> Logout
+                        <button type="submit" style="width: 100%; text-align: left;" class="btn btn-outline-light btn-sm">
+                            Logout
                         </button>
                     </form>
                 </div>
